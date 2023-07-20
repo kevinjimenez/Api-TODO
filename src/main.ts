@@ -21,5 +21,5 @@ async function bootstrap() {
   await app.listen(process.env.PORT);
 }
 bootstrap()
-  .finally(() => logger.log(`App running on PORT: ${process.env.PORT}`))
+  .finally(() => logger.log(`api-todo is up and running: ${process.env.PORT}`))
   .catch();
