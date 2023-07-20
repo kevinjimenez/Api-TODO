@@ -3,12 +3,18 @@ import { ConfigModule } from '@nestjs/config';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
+import { EnvConfiguration } from './common/config/env.config';
+import { JoiValidationSchema } from './common/config/joi.validation';
 import { HealthModule } from './health/health.module';
 import { TodoModule } from './todo/todo.module';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      load: [EnvConfiguration],
+      validationSchema: JoiValidationSchema,
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST,
@@ -24,6 +30,7 @@ import { TodoModule } from './todo/todo.module';
     }),
     HealthModule,
     TodoModule,
+    CommonModule,
   ],
 })
 export class AppModule {}
