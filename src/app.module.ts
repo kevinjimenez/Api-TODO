@@ -1,10 +1,11 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { EnvConfiguration } from './common/config/env.config';
 import { JoiValidationSchema } from './common/config/joi.validation';
+import { LoggerMiddleware } from './common/middlewares/logger.middleware';
 import { HealthModule } from './health/health.module';
 import { TodoModule } from './todo/todo.module';
 import { CommonModule } from './common/common.module';
@@ -33,4 +34,8 @@ import { CommonModule } from './common/common.module';
     CommonModule,
   ],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware).forRoutes('*');
+  }
+}
