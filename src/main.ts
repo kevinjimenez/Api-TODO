@@ -1,9 +1,13 @@
-import { ValidationPipe } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { Logger as LoggerPino, LoggerErrorInterceptor } from 'nestjs-pino';
 import { AppModule } from './app.module';
+const logger = new Logger('Bootstrap');
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { bufferLogs: true });
+  app.useLogger(app.get(LoggerPino));
+  app.useGlobalInterceptors(new LoggerErrorInterceptor());
 
   app.setGlobalPrefix('api');
 
@@ -15,6 +19,7 @@ async function bootstrap() {
   );
 
   await app.listen(process.env.PORT);
-  console.log(`App running on PORT: ${process.env.PORT}`);
 }
-bootstrap().then().catch();
+bootstrap()
+  .finally(() => logger.log(`App running on PORT: ${process.env.PORT}`))
+  .catch();
