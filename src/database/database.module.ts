@@ -28,8 +28,4 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   ],
   exports: [TypeOrmModule],
 })
-export class DatabaseModule {
-  constructor() {
-    console.log(process.env);
-  }
-}
+export class DatabaseModule {}
