@@ -1,0 +1,166 @@
+{
+	"info": {
+		"_postman_id": "833d9ef6-2508-403c-9ee6-ee6f071829b1",
+		"name": "Api Todo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3349598"
+	},
+	"item": [
+		{
+			"name": "Health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}/api/health",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"api",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get TODO's",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}/api/todo",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"api",
+						"todo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get TODO by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}/api/todo/4a221005-0a70-4457-837e-5fcfa8bd45bd",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"api",
+						"todo",
+						"4a221005-0a70-4457-837e-5fcfa8bd45bd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create TODO",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"tarea 2\",\n    \"active\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api_url}}/api/todo",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"api",
+						"todo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update TODO by id",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"active\": false}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api_url}}/api/todo/4a221005-0a70-4457-837e-5fcfa8bd45bd",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"api",
+						"todo",
+						"4a221005-0a70-4457-837e-5fcfa8bd45bd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete TODO by id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}/api/todo/e5e77308-53fc-4f25-a278-6574eeceb799",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"api",
+						"todo",
+						"e5e77308-53fc-4f25-a278-6574eeceb799"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api_url",
+			"value": "localhost:3000",
+			"type": "string"
+		}
+	]
+}
